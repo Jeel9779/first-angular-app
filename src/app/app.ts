@@ -15,15 +15,18 @@ export class App {
   protected readonly title = signal('first-angular-app');
 
     users = Dummy_Person;
-    selectedUserID?: string;
+    selectedUserID?: string; // ? - Because initially: No user is selected.
 
 
+    // we store only id , form id -> we compute full user objedt called derived state (vi)
     get selectedUser() {
-      return this.users.find((user) => user.id === this.selectedUserID)!;
+      return this.users.find(
+        (user) => user.id === this.selectedUserID)!;
     }
 
+
+    // child emits id - parent receives - parent update it - ui
     onSelectUser(id: string){
-     /*  console.log('Selected user with id ' + id); */
      this.selectedUserID = id;
       
     }
