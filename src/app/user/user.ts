@@ -1,4 +1,16 @@
-import { Component, Input , Output , EventEmitter} from '@angular/core';
+import { Component, Input , Output , output ,EventEmitter, input} from '@angular/core';
+
+/* type User =  {
+    id: string;
+    avatar: string;
+    name: string;
+  }; */
+
+interface Userr {
+    id: string;
+    avatar: string;
+    name: string;
+}
 
 @Component({
   selector: 'app-user',
@@ -7,17 +19,21 @@ import { Component, Input , Output , EventEmitter} from '@angular/core';
   styleUrl: './user.scss',
 })
 export class User {
-  @Input({required: true}) id!: string;
-  @Input({required: true}) avatar!: string;
-  @Input({required: true}) name!: string; 
-  @Output() select = new EventEmitter();
+  @Input({required: true}) user!: Userr;
+  @Output() select = new EventEmitter<string>(); 
 
+/*   id = input.required<string>();
+  avatar = input.required<string>();
+  name = input.required<string>(); 
+  select = output<string>(); */
+ 
   get imagePath(){
-    return '/users/' + this.avatar;
+    return '/users/' + this.user.avatar;
   } 
 
   onSelectUser(){
-   this.select.emit(this.id);
+   this.select.emit(this.user.id) ;
+ 
   } 
 
     /* avatar = input<string>(); 
