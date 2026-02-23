@@ -1,20 +1,9 @@
 import { Component, Input , Output , output ,EventEmitter, input} from '@angular/core';
-
-/* type User =  {
-    id: string;
-    avatar: string;
-    name: string;
-  }; */
-
-interface Userr {
-    id: string;
-    avatar: string;
-    name: string;
-}
-
+import {  type Userr } from './user.model';
+import { Card } from "../shared/card/card";
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [Card],
   templateUrl: './user.html',
   styleUrl: './user.scss',
 })
@@ -22,8 +11,8 @@ export class User {
 
   // parent send data to child
   @Input({required: true}) user!: Userr;
-
-
+ 
+  @Input({required: true}) selected!: boolean;
   // child must notify parent when clicked. c-p
   @Output() select = new EventEmitter<string>(); 
 
